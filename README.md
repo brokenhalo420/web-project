@@ -1,2 +1,2 @@
 # web-project
-This is our course project for Web Technologies
+# This is our course project for Web Technologies
