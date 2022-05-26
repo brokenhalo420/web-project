@@ -1,0 +1,79 @@
+body {
+    text-align: center;
+    background-color: rgb(255, 254, 247);
+}
+
+img#logo {
+    height: 200px;
+    width: auto;
+}
+
+h1{
+    font-size: 80px;
+    font-weight: normal;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 1px;
+}
+
+header {
+    align-items: center;
+    text-align: center;
+}
+
+article {
+    text-align: center;
+    margin-left :35%;
+    margin-right :35%;
+    border: 1px black solid;
+    border-radius: 3px;
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,89,0,1) 15%, rgba(255,243,0,1) 32%, rgba(25,152,24,1) 49%, rgba(32,232,223,1) 66%, rgba(0,14,250,1) 83%, rgba(230,0,255,1) 100%);
+}
+
+form {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    margin-left :10%;
+    margin-right :10%;
+    padding: 3%;
+}
+
+form>h2 {
+    font-weight: normal;
+    font-size: 40px;
+    margin-left :-5%;
+    margin-right :-5%;
+    margin-top: 1px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+form label {
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+form input {
+    width: 90%;
+    min-height: 30px;
+    font-size:18px;
+    border-radius: 3px;
+    background-color: lightgrey;
+    text-indent: 2%;
+    vertical-align: middle;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+form button {
+    font-size: 30px;
+    width: 80%;
+    border-radius: 3px;
+    margin-top: 5%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+
+button#register-button{
+    background-color: green;
+}
+
+
