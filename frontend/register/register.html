@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Чакалня</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="./css/style.css">
     <script defer src="./js/events.js"></script>
 </head>
@@ -17,21 +17,21 @@
         <form id="registration-form">
             <h2>Регистрация</h2>
             <label for="first-name">Име:</label>
-            <input id="first-name">
+            <input id="first-name" required>
 
             <label for="last-name">Фамилия:</label>
-            <input id="last-name">
+            <input id="last-name" required>
 
             <label for="username">Потребителско име:</label>
-            <input id="username">
+            <input id="username" required>
 
             <label for="email">Имейл:</label>
-            <input id="email">
+            <input id="email" required>
 
             <label for="password">Парола:</label>
-            <input id="password" type="password">
+            <input id="password" type="password" required>
 
-            <button id="register-button">Регистрация</button>
+            <button id="register-button" required>Регистрация</button>
         </form>
     </article>
 </body>
