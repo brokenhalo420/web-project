@@ -1,0 +1,93 @@
+body {
+    background-color: rgb(255, 254, 247);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content:space-between;
+    justify-content: space-between;
+    
+}
+
+ol {
+    
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    column-rule-style: solid;
+    list-style-position: inside;
+    height: fit-content;
+    margin-left: -15%;
+}
+
+article {
+    text-align: center;
+    border: 1px black solid;
+    border-radius: 3px;
+}
+
+#chatroom {
+    background-color: violet;
+    height: 300px;
+    width: 700px;
+}
+
+.child {
+    display: inline-block;
+    border: 1px solid red;
+    padding: 1rem 1rem;
+    vertical-align: top;
+}
+
+#queue {
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display:flex;
+    background-color: blue;
+    min-height: fit-content;
+}
+
+#whole {
+    display: inline-block;
+}
+
+#logo {
+    height: 200px;
+    width: auto;
+    margin-bottom:30px;
+}
+
+button#register-button{
+    background-color: green;
+}
+
+#buttons {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#join-button {
+    background-color: lightgreen;
+    width: 80%;
+}
+
+#leave-button {
+    background-color: lightblue;
+    width: 80%;
+}
+
+#messages {
+    padding-top: 35%;
+}
+
+#newsect {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: stretch;
+    width: 60%;
+    min-width: 600px;
+}
