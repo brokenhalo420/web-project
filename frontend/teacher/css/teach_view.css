@@ -1,0 +1,116 @@
+body {
+    background-color: rgb(255, 254, 247);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content:space-between;
+    justify-content: space-between;
+    
+}
+
+ol {
+    
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    column-rule-style: solid;
+    list-style-position: inside;
+    height: fit-content;
+    margin-left: -15%;
+}
+
+article {
+    display: flex;
+    overflow-y:auto;
+    height:300px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid black;
+    width: 500px;
+
+}
+
+#chatroom {
+    background-color: rgb(235 235 235 / 81%);
+    border: 1px solid black;
+    border-left: 0px solid white;
+    height: 300px;
+    width: 300px;
+    min-width: 300px;
+    display: flex;
+    overflow-y:auto;
+
+}
+#input-to-chat {
+    
+    width: 220px;
+    height: fit-content;
+}
+.child {
+    display: inline-block;
+    padding: 1rem 1rem;
+    vertical-align: top;
+}
+
+#queue {
+    /* justify-content: center;
+    align-content: center;
+    align-items: center; */
+    display:flex;
+    border-radius: 10px;
+    min-height: fit-content;
+    min-width: 300px;
+}
+
+#whole {
+    display: inline-block;
+}
+
+#logo {
+    height: 200px;
+    width: auto;
+    margin-bottom:30px;
+}
+
+button#register-button{
+    background-color: green;
+}
+
+#buttons {
+    width: 90px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+#add-button {
+
+    border: 1px solid black;
+    background-color: lightgreen;
+    width: 80%;
+}
+
+#tempAdd-button {
+    border: 1px solid black;
+    background-color: lightblue;
+    width: 80%;
+    margin-top: 5px;
+}
+
+td{
+    border: 1px solid black;
+    
+}
+p{
+    height: 250px;
+}
+#newsect {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: stretch;
+    width: 60%;
+    min-width: 600px;
+}
