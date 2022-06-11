@@ -79,6 +79,10 @@ form input {
     margin-bottom: 5%;
 }
 
+#button-container {
+    display: flex;
+}
+
 form button {
     font-size: 30px;
     width: 80%;
@@ -90,7 +94,10 @@ form button {
 }
 
 button#register-button{
-    background-color: green;
+    background-color: rgba(189, 10, 10, 0.686);
 }
 
+button#login-button{
+    background-color: rgba(38, 192, 38, 0.566);
+}
 
