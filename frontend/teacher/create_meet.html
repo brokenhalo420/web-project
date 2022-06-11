@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Meet</title>
+</head>
+
+<body>
+    <header>
+        <img id="logo" src="./img/pagelogo.png">
+        <h1>Чакалня</h1>
+        <h1>Създайте своята стая</h1>
+    </header>
+
+
+    <article>
+        <form id="invite-form" action="#">
+            <label for="url">Линк:</label>
+            <input id="url" type="url" required>
+
+            <h2>Пoлучатели:</h2>
+
+
+            <section>
+                <label for="email">Имейл на получател:</label>
+                <input id="email" type="email" required>
+
+                <label for="time">Час на започване:</label>
+                <input id="time" type="time">
+            </section>
+
+
+            <button id="addinvite-button">Добави</button>
+        </form>
+
+        <table>
+
+            <tr>
+                <th>Имейл</th>
+                <th>Час</th>
+            </tr>
+            <!--To do...-->
+        </table>
+        <button id="send-button">Изпрати покани</button>
+    </article>
+
+</body>
+
+</html>
