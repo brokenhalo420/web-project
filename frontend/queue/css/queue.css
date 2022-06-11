@@ -33,6 +33,7 @@ article {
     border-left: 0px solid white;
     height: 300px;
     width: 680px;
+    min-width: 680px;
 }
 #input-to-chat {
     width: 520px;
@@ -50,6 +51,7 @@ article {
     display:flex;
     border-radius: 10px;
     min-height: fit-content;
+    min-width: 170px;
 }
 
 #whole {
