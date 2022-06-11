@@ -24,8 +24,8 @@ article {
     justify-content: center;
     flex-direction: column;
     align-items: center; 
-    width: 10%;
-    height: 600px;
+    width: 30%;
+    height: 100%;
     border: 1px solid black;
     border-radius: 10px;
     padding-left: 10%;
@@ -40,7 +40,8 @@ form {
     justify-content: space-between;
     align-content: space-between;
     flex-direction: column;
-    width: 150%;
+    width: 100%;
+    padding-top: 5%;
     flex-shrink: 1;
 }
 
@@ -59,7 +60,7 @@ form>h2 {
     font-size: 40px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     justify-content: center;
-    margin-top: 10%;
+    margin-top: 3%;
 }
 
 form label {
@@ -69,7 +70,7 @@ form label {
 
 form input {
     width: 100%;
-    min-height: 40px;
+    min-height: 30px;
     font-size:18px;
     border-radius: 3px;
     background-color: lightgrey;
@@ -80,17 +81,45 @@ form input {
 }
 
 form button {
-    font-size: 30px;
-    width: 80%;
+    font-size: 20px;
+    width: 20%;
     border-radius: 3px;
-    margin-left: 12%;
-    margin-top: 10%;
+    align-self: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     min-width: fit-content;
+    margin-top: 5%;
 }
 
-button#register-button{
-    background-color: green;
+button#addinvite-button{
+    margin-bottom: 10%;
+}
+button#send-button{
+    margin-top: 10%;
+}
+
+/* table{
+    overflow-y:scroll;
+    height:100px;
+    display:block;
+ } */
+
+table#invite-table{
+    display: flex;
+    overflow-y:scroll;
+    height:200px;
+    display:block;
+    border: 1px solid black;
+    width: auto;
+    align-self: center;
+}
+input#time{
+    width: fit-content;
+}
+
+td{
+    border: 1px solid black;
+    padding: 1%;
+    width: 600px;
 }
 
 

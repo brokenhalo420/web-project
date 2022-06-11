@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/createstyle.css">
+    <script defer src="./js/events.js"></script>
     <title>Create Meet</title>
 </head>
 
@@ -12,13 +14,14 @@
     <header>
         <img id="logo" src="./img/pagelogo.png">
         <h1>Чакалня</h1>
-        <h1>Създайте своята стая</h1>
+        <h2>Създайте своята стая</h2>
     </header>
 
-    <button id="exit-btn">Изход</button>
+
 
     <article>
-        <form id="invite-form" action="#">
+        <form id="invite-form">
+
             <label for="url">Линк:</label>
             <input id="url" type="url" required>
 
@@ -35,17 +38,39 @@
 
 
             <button id="addinvite-button">Добави</button>
+
+            <table id="invite-table">
+
+                <tr>
+                    <th>Имейл</th>
+                    <th>Час</th>
+                </tr>
+                <!--To do...-->
+                <tr>
+                    <td>ivann5588888888888888883@gmail.com</td>
+                    <td>9:00</td>
+                </tr>
+                <tr>
+                    <td>ivann5583@gmail.com</td>
+                    <td>9:00</td>
+                </tr>
+                <tr>
+                    <td>ivann5583@gmail.com</td>
+                    <td>9:00</td>
+                </tr>
+                <tr>
+                    <td>ivann5583@gmail.com</td>
+                    <td>9:00</td>
+                </tr>
+            </table>
+
+                <button id="send-button">Изпрати покани</button>
+                <button id="cancel-btn">Отмяна</button>
+
+
         </form>
 
-        <table>
 
-            <tr>
-                <th>Имейл</th>
-                <th>Час</th>
-            </tr>
-            <!--To do...-->
-        </table>
-        <button id="send-button">Изпрати покани</button>
     </article>
 
 </body>
