@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2022 at 09:28 PM
+-- Generation Time: Jun 11, 2022 at 09:59 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -110,9 +111,17 @@ CREATE TABLE `users` (
   `email` varchar(320) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(16) NOT NULL,
+  `type` enum('TEACHER','STUDENT') NOT NULL DEFAULT 'STUDENT',
   `userinvites_id` int(255) NOT NULL,
   `queueusers_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `password`, `type`, `userinvites_id`, `queueusers_id`) VALUES
+(7, 'Milen', 'Petrov', 'milen.petrov@gmailcom', 'milen1406', '892b5f8823a7a260', 'TEACHER', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -216,7 +225,7 @@ ALTER TABLE `userinvites`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -263,6 +272,7 @@ ALTER TABLE `userinvites`
 ALTER TABLE `users`
   ADD CONSTRAINT `queue_users` FOREIGN KEY (`queueusers_id`) REFERENCES `queueusers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_invites` FOREIGN KEY (`userinvites_id`) REFERENCES `userinvites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
