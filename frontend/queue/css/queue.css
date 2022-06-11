@@ -54,7 +54,14 @@ article {
     min-height: fit-content;
     min-width: 170px;
 }
-
+#messages {
+    height: 279px;
+    max-height: 279px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex-wrap: nowrap;
+}
 #whole {
     display: inline-block;
 }
@@ -94,10 +101,6 @@ button#register-button{
     width: 80%;
     margin-bottom: 10px;
     margin-top: 5px;
-}
-
-p{
-    height: 250px;
 }
 #newsect {
     display: flex;
