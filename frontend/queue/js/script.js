@@ -31,6 +31,26 @@ btn.addEventListener('click', event => {
 })
 
 
+leaveButton = document.getElementById('leave-button');
+leaveButton.addEventListener('click', event => {
+    data = getData();
+
+    fetch('../../backend/queue/leave_queue.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+    .then(msg => {
+        console.log(msg);
+        if(msg["status"] == 'fail') {
+            console.log('mn sizle')
+            alert('FAIL');
+        }
+    })
+    refreshQueue();
+})
 
 joinButton = document.getElementById('join-button');
 joinButton.addEventListener('click', event => {
@@ -95,7 +115,12 @@ async function demo() {
             }
 
         })
-        data = getData();
+        refreshQueue();
+    }
+}
+
+function refreshQueue() {
+    data = getData();
         fetch('../../backend/queue/refresh_queue.php', {
             method: 'POST',
             headers: {
@@ -113,7 +138,7 @@ async function demo() {
             }
 
         })
-    }
 }
 
 demo();
+
