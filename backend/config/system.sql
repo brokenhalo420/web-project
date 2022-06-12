@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 08:03 PM
+-- Generation Time: Jun 12, 2022 at 11:32 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -116,7 +116,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `password`, `type`) VALUES
-(13, 'Milen', 'Petrov', 'milen.petrov@gmail.com', 'milen1406', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'TEACHER');
+(373, 'Milen', 'Petrov', 'milen.petrov@gmail.com', 'milen1406', '5249f3b45cd4b5ba3efa537e87060edf538a81696dfe5d05b57cd6bdb3a3bcc8', 'TEACHER');
 
 --
 -- Indexes for dumped tables
@@ -140,7 +140,7 @@ ALTER TABLE `invites`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `chat_id` (`chat_id`);
+  ADD KEY `chat_id` (`chat_id`) USING BTREE;
 
 --
 -- Indexes for table `queues`
@@ -153,8 +153,8 @@ ALTER TABLE `queues`
 --
 ALTER TABLE `queueusers`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_id` (`user_id`),
-  ADD UNIQUE KEY `queue_id` (`queue_id`);
+  ADD KEY `user_id` (`user_id`) USING BTREE,
+  ADD KEY `queue_id` (`queue_id`) USING BTREE;
 
 --
 -- Indexes for table `userinvites`
@@ -179,25 +179,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `invites`
 --
 ALTER TABLE `invites`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `queues`
 --
 ALTER TABLE `queues`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `queueusers`
@@ -209,13 +209,13 @@ ALTER TABLE `queueusers`
 -- AUTO_INCREMENT for table `userinvites`
 --
 ALTER TABLE `userinvites`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=374;
 
 --
 -- Constraints for dumped tables
@@ -250,7 +250,7 @@ ALTER TABLE `queueusers`
 -- Constraints for table `userinvites`
 --
 ALTER TABLE `userinvites`
-  ADD CONSTRAINT `userinvites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `userinvites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `userinvites_ibfk_2` FOREIGN KEY (`invite_id`) REFERENCES `invites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
