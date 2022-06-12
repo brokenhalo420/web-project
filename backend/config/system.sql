@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 04:14 PM
+-- Generation Time: Jun 12, 2022 at 04:34 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -105,7 +105,7 @@ CREATE TABLE `users` (
   `lastname` varchar(100) NOT NULL,
   `email` varchar(320) NOT NULL,
   `username` varchar(30) NOT NULL,
-  `password` varchar(16) NOT NULL,
+  `password` varchar(64) NOT NULL,
   `type` enum('TEACHER','STUDENT') NOT NULL DEFAULT 'STUDENT'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -114,7 +114,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `password`, `type`) VALUES
-(7, 'Milen', 'Petrov', 'milen.petrov@gmailcom', 'milen1406', '892b5f8823a7a260', 'TEACHER');
+(12, 'Milen', 'Petrov', 'milen.petrov@gmail.com', 'milen1406', 'f9c6529b437f5e3c7c0c07dbbe78728877de05bdb2e5f0e85267a8755d98ea76', 'TEACHER');
 
 --
 -- Indexes for dumped tables
@@ -212,7 +212,7 @@ ALTER TABLE `userinvites`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
