@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 10:58 PM
+-- Generation Time: Jun 12, 2022 at 11:09 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -179,7 +179,7 @@ ALTER TABLE `invites`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `chat_id` (`chat_id`);
+  ADD KEY `chat_id` (`chat_id`) USING BTREE;
 
 --
 -- Indexes for table `queues`
