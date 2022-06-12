@@ -20,11 +20,11 @@ function sleep(ms) {
         const password = document.getElementById('password');
 
         const data = {
-            name: firstName.value,
+            firstname: firstName.value,
             lastname: lastName.value,
             email: email.value,
             username: username.value,
-            password: password.value
+            password: password.value,
         };
         console.log(data);
 
