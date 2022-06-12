@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 11:09 PM
+-- Generation Time: Jun 12, 2022 at 11:10 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -29,6 +29,7 @@ USE `system`;
 -- Table structure for table `chats`
 --
 
+DROP TABLE IF EXISTS `chats`;
 CREATE TABLE `chats` (
   `id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -46,6 +47,7 @@ INSERT INTO `chats` (`id`) VALUES
 -- Table structure for table `invites`
 --
 
+DROP TABLE IF EXISTS `invites`;
 CREATE TABLE `invites` (
   `id` int(255) NOT NULL,
   `queue_id` int(255) NOT NULL
@@ -64,6 +66,7 @@ INSERT INTO `invites` (`id`, `queue_id`) VALUES
 -- Table structure for table `messages`
 --
 
+DROP TABLE IF EXISTS `messages`;
 CREATE TABLE `messages` (
   `id` int(255) NOT NULL,
   `text` text NOT NULL,
@@ -84,6 +87,7 @@ INSERT INTO `messages` (`id`, `text`, `private`, `chat_id`) VALUES
 -- Table structure for table `queues`
 --
 
+DROP TABLE IF EXISTS `queues`;
 CREATE TABLE `queues` (
   `id` int(255) NOT NULL,
   `name` varchar(300) NOT NULL,
@@ -105,6 +109,7 @@ INSERT INTO `queues` (`id`, `name`, `url`) VALUES
 -- Table structure for table `queueusers`
 --
 
+DROP TABLE IF EXISTS `queueusers`;
 CREATE TABLE `queueusers` (
   `id` int(255) NOT NULL,
   `user_id` int(255) NOT NULL,
@@ -119,6 +124,7 @@ CREATE TABLE `queueusers` (
 -- Table structure for table `userinvites`
 --
 
+DROP TABLE IF EXISTS `userinvites`;
 CREATE TABLE `userinvites` (
   `id` int(255) NOT NULL,
   `user_id` int(255) NOT NULL,
@@ -138,6 +144,7 @@ INSERT INTO `userinvites` (`id`, `user_id`, `invite_id`) VALUES
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(255) NOT NULL,
   `firstname` varchar(100) NOT NULL,
