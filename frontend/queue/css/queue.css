@@ -9,35 +9,41 @@ body {
 }
 
 ol {
-    
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    display:flex;
+    display: flex;
+    overflow-y:auto;
+    height:240px;
+    min-width: 300px;
     flex-direction: column;
-    column-rule-style: solid;
     list-style-position: inside;
-    height: fit-content;
-    margin-left: -15%;
+    text-align: left;
+    margin-left: -13%;
+ 
+}
+ol li{
+    border-bottom: 1px solid grey;
+    padding: 10px;
 }
 
 article {
     text-align: center;
     background-color: white;
     border: 1px solid black;
-    width: 170px;
+    
+    width: 300px;
 }
 
 #chatroom {
     background-color: rgb(235 235 235 / 81%);
     border: 1px solid black;
     border-left: 0px solid white;
-    height: 300px;
-    width: 680px;
-    min-width: 680px;
+    height: 320px;
+    width: 300px;
+    min-width: 300px;
+    display: flex;
+    overflow-y:auto;
 }
 #input-to-chat {
-    width: 520px;
+    width: 280px;
 }
 .child {
     display: inline-block;
@@ -46,9 +52,9 @@ article {
 }
 
 #queue {
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+    justify-content: left;
+    align-content: left;
+    align-items: left;
     display:flex;
     border-radius: 10px;
     min-height: fit-content;
@@ -72,35 +78,37 @@ article {
     margin-bottom:30px;
 }
 
-button#register-button{
+/* button#register-button{
     background-color: green;
-}
+} */
 
 #buttons {
-    margin-bottom: 10px;
-    border-bottom: 1px solid black;
+    
+    width: 100px;
+    margin: 5px;
+    display: inline;
 }
 
 #join-button {
-
+    height: 40px;
     border: 1px solid black;
     background-color: lightgreen;
-    width: 80%;
+    
 }
 
 #leave-button {
     border: 1px solid black;
     background-color: lightblue;
-    width: 80%;
-    margin-top: 5px;
+    height: 40px;
+    
 }
 
 #quit-button {
     border: 1px solid black;
     background-color: rgb(231, 112, 112);
-    width: 80%;
-    margin-bottom: 10px;
-    margin-top: 5px;
+    height: 40px;
+    
+    /* margin-top: 5px; */
 }
 #newsect {
     display: flex;
