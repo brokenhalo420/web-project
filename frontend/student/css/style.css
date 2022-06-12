@@ -71,7 +71,7 @@ section.invite:hover, section.invite:active {
     background-color: rgba(34, 14, 33, 0.481);
 }
 
-img#meet_icon{
+img.meet_icon{
     width: 50px;
     height: auto;
     margin-left: 3%;
@@ -82,6 +82,7 @@ h3#no-invite-message{
     text-align: center;
     padding-bottom: 3%;
     font-weight: lighter;
+    display: none;
 }
 
 h2{
