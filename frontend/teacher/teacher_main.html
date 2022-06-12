@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
     <link rel="stylesheet" href="./css/teacher_main.css">
     <script defer src="./js/events.js"></script>
-    <title>Главна страница преподавател</title>
 </head>
-
 <body>
     <header>
         <img id="logo" src="./img/pagelogo.png">
         <h1>Чакалня</h1>
-        <h2>Вижте вашите стаи</h2>
     </header>
+    <main id="main-section">
+        <article id="invites">
+            <h3 id="no-invite-message">Няма активни покани за срещи</h3>
+            <section class="invite">
+                <img id="meet_icon" src="./img/invite_icon.png" alt="Meeting icon">
+                <section id="information">
+                    <h2 id="name-of-meeting">Test meeting</h2> 
 
+                </section>
+            </section>
 
+    
+            </section>
+        </article>
+        <section class="create">
+            <img id="add_icon" src="./img/add-on-icon-1.png" alt="Add icon">
+            <section>
+                <h2 id="create-meeting">Create meeting</h2>
+            </section>
+               
 
-    <article>
-
-            <section class="btn-group">
-                <button>Стая 1</button>
-                <button>Стая 2</button>
-                <button>Стая 3</button>
-            </section> 
-            <button id="create">Създайте стая</button>
-    </article>
-
+        </section>
+    </main>
 </body>
-
 </html>
