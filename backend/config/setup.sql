@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 11:32 PM
+-- Generation Time: Jun 12, 2022 at 11:29 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -33,6 +33,13 @@ CREATE TABLE `chats` (
   `id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `chats`
+--
+
+INSERT INTO `chats` (`id`) VALUES
+(1);
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +50,13 @@ CREATE TABLE `invites` (
   `id` int(255) NOT NULL,
   `queue_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invites`
+--
+
+INSERT INTO `invites` (`id`, `queue_id`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -57,6 +71,13 @@ CREATE TABLE `messages` (
   `chat_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `text`, `private`, `chat_id`) VALUES
+(1, 'Здравей!', 0, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -68,6 +89,15 @@ CREATE TABLE `queues` (
   `name` varchar(300) NOT NULL,
   `url` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `queues`
+--
+
+INSERT INTO `queues` (`id`, `name`, `url`) VALUES
+(1, 'Web presentation', 'https://meet.google.com/baa-thot-nua'),
+(2, 'Algebra presentation', 'https://meet.google.com/xrs-stau-dno'),
+(3, 'OS Presentation', 'https://meet.google.com/yfk-ount-dka');
 
 -- --------------------------------------------------------
 
@@ -95,6 +125,13 @@ CREATE TABLE `userinvites` (
   `invite_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `userinvites`
+--
+
+INSERT INTO `userinvites` (`id`, `user_id`, `invite_id`) VALUES
+(1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -116,7 +153,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `password`, `type`) VALUES
-(373, 'Milen', 'Petrov', 'milen.petrov@gmail.com', 'milen1406', '5249f3b45cd4b5ba3efa537e87060edf538a81696dfe5d05b57cd6bdb3a3bcc8', 'TEACHER');
+(1, 'Milen', 'Petrov', 'milen.petrov@gmail.com', 'milen1406', '5249f3b45cd4b5ba3efa537e87060edf538a81696dfe5d05b57cd6bdb3a3bcc8', 'TEACHER'),
+(2, 'Mario', 'Nikolov', 'mario@gmail.com', 'mariogn12', '2b149399bf55697bd116635ef91e04cb4d5928e00c59bb948b6b75fcc89a1d67', 'STUDENT'),
+(3, 'Ivan', 'Kostadinov', 'ivank@gmail.com', 'ivan13kost', 'eace38e7a80b565c8e53f7a2f0405ca2b628dd73d2cd5ca01d20330cffae80f8', 'STUDENT');
 
 --
 -- Indexes for dumped tables
@@ -215,7 +254,7 @@ ALTER TABLE `userinvites`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=374;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
 
 --
 -- Constraints for dumped tables

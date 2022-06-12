@@ -28,6 +28,7 @@ btn.addEventListener('click', event => {
     p.innerHTML = data['text'];
     msgSection.appendChild(p);
     document.getElementById('input-to-chat').value = "";
+    msgSection.scrollTop = msgSection.scrollHeight;
     event.preventDefault(true);
 })
 
