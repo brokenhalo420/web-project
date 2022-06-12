@@ -8,19 +8,6 @@ body {
     
 }
 
-ol {
-    
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    display:flex;
-    flex-direction: column;
-    column-rule-style: solid;
-    list-style-position: inside;
-    height: fit-content;
-    margin-left: -15%;
-}
-
 article {
     display: flex;
     overflow-y:auto;
@@ -91,10 +78,10 @@ button#register-button{
     background-color: #3e8e41;
   }
 
-/* td{
-    border: 1px solid black;
-    
-} */
+  #wait-time{
+    padding-left: 10%;
+  }
+  
 p{
     height: 250px;
 }
