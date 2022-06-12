@@ -6,9 +6,8 @@ document.cookie.split('; ').forEach(el => {
 });
 
 (() => {
-
-
     setInterval(getAllInvites, 2000);
+
 
 })();
 
@@ -37,7 +36,40 @@ function getAllInvites() {
             container.innerHTML = '';
             for (let invite of data) {
                 let inviteEntry = createInvite(invite['name']);
-                invites.appendChild(inviteEntry);
+                container.appendChild(inviteEntry);
+            }
+
+            const invites = document.getElementsByClassName('invite');
+
+            for (var invite of invites) {
+                invite.addEventListener('click', event => {
+                    const value = invite.lastChild.firstChild.textContent;
+                    const name = {
+                        name: value
+                    };
+                    fetch('./../../backend/student/join_invite.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(name)
+                    })
+                        .then(res => res.json())
+                        .then(msg => {
+                            if (msg['status'] === 'SUCCESS') {
+                                if (myCookies['type'] === "TEACHER") {
+                                    window.location.href = './../teacher/teacher_view.html';
+                                }
+                                else if (myCookies['type'] === 'STUDENT') {
+                                    window.location.href = './../queue/queue.html';
+                                }
+                            }
+                            else {
+                                return;
+                            }
+                        });
+                    event.preventDefault(true);
+                });
             }
         })
 }
@@ -50,6 +82,9 @@ function createInvite(name) {
     img.setAttribute('class', 'meet-icon');
     img.setAttribute('src', './img/invite_icon.png');
     img.setAttribute('alt', 'Meeting icon');
+    img.style.width = "50px";
+    img.style.height = "auto";
+    img.style.marginLeft = "3%";
 
     let info = document.createElement('section');
     info.setAttribute('class', 'information');
