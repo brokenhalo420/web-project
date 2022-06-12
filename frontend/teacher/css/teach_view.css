@@ -82,9 +82,7 @@ button#register-button{
     padding-top: 1em;
   }
 
-p{
-    height: 250px;
-}
+
 #newsect {
     display: flex;
     justify-content: center;
@@ -143,3 +141,12 @@ p{
     color: white;
     margin-top: 1%;
   }
+
+  #messages {
+    height: 279px;
+    max-height: 279px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex-wrap: nowrap;
+}
