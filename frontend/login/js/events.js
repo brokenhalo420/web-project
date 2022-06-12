@@ -9,7 +9,7 @@ if (cookie != "") {
         window.location.href ='./../teacher/techer_view.html';
     }
     else if (mycookies['type'] === 'STUDENT') {
-        window.location.href = './../../student/student_account.html';
+        window.location.href = './../student/student_account.html';
     }
 }
 
@@ -43,19 +43,8 @@ function sleep(ms) {
                     const form = document.getElementById('login-form');
                     const success_msg = construct_msg_box("Successful login!", 'SUCCESS', form.style.width);
                     form.appendChild(success_msg);
-                    sleep(5000).then(() => {
-                        if (cookie != "") {
-                            cookie.split('; ').forEach(el => {
-                                let [key, value] = el.split('=');
-                                mycookies[key.trim()] = value;
-                            })
-                            if (mycookies['type'] === 'TEACHER') {
-                                window.location.href ='./../teacher/techer_view.html';
-                            }
-                            else if (mycookies['type'] === 'STUDENT') {
-                                window.location.href ='./../student/student_account.html';
-                            }
-                        }
+                    sleep(3000).then(() => {
+                        window.location.reload();
                     });
                 }
                 else {
@@ -93,3 +82,13 @@ function construct_msg_box(msg, status, width) {
     error_msg.style.width = width;
     return error_msg;
 }
+
+
+(() => {
+    const button = document.getElementById('register-button');
+
+    button.addEventListener('click', event => {
+        window.location.href = "./../register/register.html";
+        event.preventDefault(true);
+    })
+})();

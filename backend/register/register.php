@@ -2,12 +2,11 @@
     require_once('../utility/db.php');
 
     function userExists($userData){
-        $SQL = "SELECT * FROM users WHERE email=:email && password=:password";
+        $SQL = "SELECT * FROM users WHERE username=:username && email=:email";
         try{
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
-            $result->execute(['email' => $userData['email'], 'password' => $userData['password']]);
-
+            $result->execute(['username' => $userData['username'], 'email' => $userData['email']]);
             if ($result->rowCount() == 1) {
 
                 $user = $result->fetch(PDO::FETCH_ASSOC);
@@ -24,8 +23,6 @@
     }
 
     function addUser($userData){
-
-        var_dump($userData);
         $SQL = "INSERT INTO users (firstname, lastname, email, username, password, type) 
         VALUES (:firstname, :lastname, :email, :username, :password, :type)";
         try{
@@ -47,15 +44,12 @@
     $userData['password'] = hash("sha256",$userData['password']);
     $userData['type'] = 'STUDENT';
 
-    //var_dump($userData);
-
     if($userData && isset($userData['email']) && isset($userData['password'])){
         try {
             $user = userExists($userData);
-
             if($user){
 
-                http_response_code(400);
+                http_response_code(200);
                 echo json_encode(['status' => 'FAILURE', 'message' => 'User already exists.']);
 
                 

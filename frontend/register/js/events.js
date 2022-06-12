@@ -1,6 +1,16 @@
 const cookie = document.cookie;
-if(cookie != ""){
-    window.location.replace('../../index/html/index.html');
+let mycookies = {};
+if (cookie != "") {
+    cookie.split('; ').forEach(el => {
+        let [key, value] = el.split('=');
+        mycookies[key.trim()] = value;
+    })
+    if (mycookies['type'] === 'TEACHER') {
+        window.location.href ='./../teacher/techer_view.html';
+    }
+    else if (mycookies['type'] === 'STUDENT') {
+        window.location.href = './../student/student_account.html';
+    }
 }
 
 function sleep(ms) {
@@ -26,7 +36,6 @@ function sleep(ms) {
             username: username.value,
             password: password.value,
         };
-        console.log(data);
 
         fetch('./../../backend/register/register.php', {
             method: 'POST',
@@ -36,18 +45,18 @@ function sleep(ms) {
             body: JSON.stringify(data)
         })
         .then(res => res.json())
-        .then(data => {
-            if(data.status === 'SUCCESS') {
+        .then(msg => {
+            if(msg.status === 'SUCCESS') {
                 console.log('Successfully registered');
                 const form = document.getElementById('main-section');
                 const exits_box =document.getElementById('message-box');
                 if(exits_box != null){
                     exits_box.parentNode.removeChild(exits_box);
                 }
-                const success_msg = construct_msg_box(data.message + ' Redirecting...','SUCCESS',form.style.width);
+                const success_msg = construct_msg_box(msg.message + ' Redirecting...','SUCCESS',form.style.width);
                 form.appendChild(success_msg);
-                sleep(5000).then(() => {
-                    window.location.replace('../../login/html/login.html');
+                sleep(3000).then(() => {
+                    window.location.href= './../login/login.html';
                 });
                 
             }
@@ -58,7 +67,7 @@ function sleep(ms) {
                 if(exits_box != null){
                     exits_box.parentNode.removeChild(exits_box);
                 }
-                const error_msg = construct_msg_box(data.message,'FAILURE',form.style.width);
+                const error_msg = construct_msg_box(msg.message,'FAILURE',form.style.width);
                 form.appendChild(error_msg);
             }
         })
