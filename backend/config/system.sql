@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 04:34 PM
+-- Generation Time: Jun 12, 2022 at 08:03 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -64,7 +64,9 @@ CREATE TABLE `messages` (
 --
 
 CREATE TABLE `queues` (
-  `id` int(255) NOT NULL
+  `id` int(255) NOT NULL,
+  `name` varchar(300) NOT NULL,
+  `url` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -114,7 +116,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `password`, `type`) VALUES
-(12, 'Milen', 'Petrov', 'milen.petrov@gmail.com', 'milen1406', 'f9c6529b437f5e3c7c0c07dbbe78728877de05bdb2e5f0e85267a8755d98ea76', 'TEACHER');
+(13, 'Milen', 'Petrov', 'milen.petrov@gmail.com', 'milen1406', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'TEACHER');
 
 --
 -- Indexes for dumped tables
@@ -166,7 +168,8 @@ ALTER TABLE `userinvites`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`,`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -212,7 +215,7 @@ ALTER TABLE `userinvites`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Constraints for dumped tables
