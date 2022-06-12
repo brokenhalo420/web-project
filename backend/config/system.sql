@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2022 at 09:59 PM
+-- Generation Time: Jun 12, 2022 at 04:14 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -31,8 +30,7 @@ USE `system`;
 --
 
 CREATE TABLE `chats` (
-  `id` int(255) NOT NULL,
-  `message_id` int(255) NOT NULL
+  `id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -43,7 +41,6 @@ CREATE TABLE `chats` (
 
 CREATE TABLE `invites` (
   `id` int(255) NOT NULL,
-  `userinvites_id` int(255) NOT NULL,
   `queue_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -56,7 +53,8 @@ CREATE TABLE `invites` (
 CREATE TABLE `messages` (
   `id` int(255) NOT NULL,
   `text` text NOT NULL,
-  `private` tinyint(1) NOT NULL
+  `private` tinyint(1) NOT NULL,
+  `chat_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -66,10 +64,7 @@ CREATE TABLE `messages` (
 --
 
 CREATE TABLE `queues` (
-  `id` int(255) NOT NULL,
-  `queueusers_id` int(255) NOT NULL,
-  `chat_id` int(255) NOT NULL,
-  `invite_id` int(255) NOT NULL
+  `id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -111,17 +106,15 @@ CREATE TABLE `users` (
   `email` varchar(320) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(16) NOT NULL,
-  `type` enum('TEACHER','STUDENT') NOT NULL DEFAULT 'STUDENT',
-  `userinvites_id` int(255) NOT NULL,
-  `queueusers_id` int(255) NOT NULL
+  `type` enum('TEACHER','STUDENT') NOT NULL DEFAULT 'STUDENT'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `password`, `type`, `userinvites_id`, `queueusers_id`) VALUES
-(7, 'Milen', 'Petrov', 'milen.petrov@gmailcom', 'milen1406', '892b5f8823a7a260', 'TEACHER', 0, 0);
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `password`, `type`) VALUES
+(7, 'Milen', 'Petrov', 'milen.petrov@gmailcom', 'milen1406', '892b5f8823a7a260', 'TEACHER');
 
 --
 -- Indexes for dumped tables
@@ -131,31 +124,27 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `passwo
 -- Indexes for table `chats`
 --
 ALTER TABLE `chats`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `message_id` (`message_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `invites`
 --
 ALTER TABLE `invites`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `userinvites_id` (`userinvites_id`),
   ADD UNIQUE KEY `queue_id` (`queue_id`);
 
 --
 -- Indexes for table `messages`
 --
 ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `chat_id` (`chat_id`);
 
 --
 -- Indexes for table `queues`
 --
 ALTER TABLE `queues`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `queueusers_id` (`queueusers_id`),
-  ADD UNIQUE KEY `chat_id` (`chat_id`),
-  ADD UNIQUE KEY `invite_id` (`invite_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `queueusers`
@@ -177,9 +166,7 @@ ALTER TABLE `userinvites`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `invite_id` (`userinvites_id`),
-  ADD UNIQUE KEY `queueusers_id` (`queueusers_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -225,7 +212,7 @@ ALTER TABLE `userinvites`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -235,44 +222,33 @@ ALTER TABLE `users`
 -- Constraints for table `chats`
 --
 ALTER TABLE `chats`
-  ADD CONSTRAINT `message_id` FOREIGN KEY (`message_id`) REFERENCES `messages` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `chats_ibfk_1` FOREIGN KEY (`id`) REFERENCES `queues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `invites`
 --
 ALTER TABLE `invites`
-  ADD CONSTRAINT `invites_id` FOREIGN KEY (`userinvites_id`) REFERENCES `userinvites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `queue_id` FOREIGN KEY (`queue_id`) REFERENCES `queues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `invites_ibfk_1` FOREIGN KEY (`queue_id`) REFERENCES `queues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `queues`
+-- Constraints for table `messages`
 --
-ALTER TABLE `queues`
-  ADD CONSTRAINT `chat_id` FOREIGN KEY (`chat_id`) REFERENCES `chats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `queue_invite_id` FOREIGN KEY (`invite_id`) REFERENCES `invites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `queueusers_id` FOREIGN KEY (`queueusers_id`) REFERENCES `queueusers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `messages`
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`chat_id`) REFERENCES `chats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `queueusers`
 --
 ALTER TABLE `queueusers`
-  ADD CONSTRAINT `queueusers_queue_id` FOREIGN KEY (`queue_id`) REFERENCES `queues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `queueusers_user_id_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `queueusers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `queueusers_ibfk_2` FOREIGN KEY (`queue_id`) REFERENCES `queues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `userinvites`
 --
 ALTER TABLE `userinvites`
-  ADD CONSTRAINT `invite_id` FOREIGN KEY (`invite_id`) REFERENCES `invites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `queue_users` FOREIGN KEY (`queueusers_id`) REFERENCES `queueusers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_invites` FOREIGN KEY (`userinvites_id`) REFERENCES `userinvites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-SET FOREIGN_KEY_CHECKS=1;
+  ADD CONSTRAINT `userinvites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `userinvites_ibfk_2` FOREIGN KEY (`invite_id`) REFERENCES `invites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
