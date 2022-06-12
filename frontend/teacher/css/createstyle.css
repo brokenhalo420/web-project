@@ -115,8 +115,12 @@ td{
     min-height:300px;
 }
 
+#hidden-section {
+    visibility: hidden;
+}
+
 .invite-table{
-    
+    background-color: red;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 1em;

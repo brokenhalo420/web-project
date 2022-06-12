@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/createstyle.css">
-    <script defer src="./js/events.js"></script>
+    <script defer src="./js/create_meet.js"></script>
     <title>Create Meet</title>
 </head>
 
@@ -22,7 +22,7 @@
     <article>
         <form id="invite-form">
             <label for="url">Линк:</label>
-            <input id="url" type="url" required>
+            <input id="url" type="text" required>
 
             <h2>Пoлучатели:</h2>
 
@@ -33,14 +33,12 @@
 
                 <label for="time">Час на започване:</label>
                 <input id="time" type="time"> -->
-
-                <button id="add-from-existing-btn">Добави от съществуващи</button>
             </section>
 
 
             <button id="addinvite-button">Добави</button>
             <section id="invited-users">
-                <table class="invite-table">
+                <table id="invite-table" class="invite-table">
 
                     <thead>
                         <th>Имейл</th>
@@ -60,7 +58,9 @@
 
         </form>
     </article>
-
+    <section id="hidden-section">
+        
+    </section>
 </body>
 
 </html>
