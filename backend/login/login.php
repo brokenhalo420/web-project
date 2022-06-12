@@ -35,13 +35,13 @@
                 session_start();
                 $_SESSION['user']=$user;
 
-                setcookie('username', $userData['username'], time() + 600, '/');
-                setcookie('password', $userData['password'], time() + 600, '/');
+                setcookie('username', $userData['username'], time() + 600000, '/');
+                setcookie('password', $userData['password'], time() + 600000, '/');
                 if($user['type'] == 'TEACHER'){
-                    setcookie('type', 'TEACHER',time() + 600, '/');
+                    setcookie('type', 'TEACHER',time() + 600000, '/');
                 }
                 else {
-                    setcookie('type', 'STUDENT',time() + 600, '/');
+                    setcookie('type', 'STUDENT',time() + 600000, '/');
                 }
                 
                 http_response_code(200);

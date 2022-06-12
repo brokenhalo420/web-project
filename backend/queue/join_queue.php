@@ -12,11 +12,22 @@ catch(PDOException $pd) {
 $con = $db->getConnection();
 
 $data = json_decode(file_get_contents('php://input'),true);
-$query = "INSERT INTO queueusers (user_id, queue_id, position, startTime) VALUES (:uname, :qId, 1, date('l0'))";
+
+$queryGetUser = "SELECT * FROM users WHERE username=:username && password=:password";
+$userDetails = [];
+try {
+    $result = $con->prepare($queryGetUser);
+    $result->execute(['username' => $data['username'], 'password' => $data['password']]);
+    $userDetails = $result -> fetch(PDO::FETCH_ASSOC);
+}
+catch(PDOException $pd) {
+    throw new Exception('ss');
+}
+$query = "INSERT INTO queueusers (user_id, queue_id, position, startTime) VALUES (:user_id, :queue_id, :position, :startTime)";
 
 try {
     $result = $con->prepare($query);
-    $result->execute($data);
+    $result->execute(['user_id' => $userDetails['id'], 'queue_id' => $data['queue_id'], 'position' => 1, 'startTime' => date('h:i:sa')]);
 }
 catch(PDOException $pd) {
     throw new Exception('ss');
