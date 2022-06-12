@@ -6,7 +6,7 @@ if (cookie != "") {
         mycookies[key.trim()] = value;
     })
     if (mycookies['type'] === 'TEACHER') {
-        window.location.href ='./../teacher/teacher_view.html';
+        window.location.href ='./../teacher/techer_view.html';
     }
     else if (mycookies['type'] === 'STUDENT') {
         window.location.href = './../../student/student_account.html';
@@ -50,17 +50,11 @@ function sleep(ms) {
                                 mycookies[key.trim()] = value;
                             })
                             if (mycookies['type'] === 'TEACHER') {
-                                window.location.replace('./../../teacher/teacher_view.html');
+                                window.location.href ='./../teacher/techer_view.html';
                             }
                             else if (mycookies['type'] === 'STUDENT') {
-                                window.location.replace('./../../student/student_account.html');
+                                window.location.href ='./../student/student_account.html';
                             }
-                        }
-                        if (['type'] === 'TEACHER') {
-                            window.location.replace('./../../teacher/teacher_view.html');
-                        }
-                        else if (data['type'] === 'STUDENT') {
-                            window.location.replace('./../../student/student_account.html');
                         }
                     });
                 }
