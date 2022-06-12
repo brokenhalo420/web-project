@@ -24,6 +24,24 @@ function sleep(ms) {
         const username = document.getElementById('username');
         const password = document.getElementById('password');
 
+        let isValid = true;
+
+        if(!/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username.value)){
+            alert("Username must be between 8 and 20 characters. It must not begin or end with any special characters");
+            isValid = false;
+        }
+
+        if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password.value)){
+            alert("Password must be at minimum eight characters, at least one uppercase letter, one lowercase letter and one number.");
+            isValid = false;
+        }
+
+        if(!isValid){
+            event.preventDefault(true);
+            return;
+        }
+
+
         const data = {
             username: username.value,
             password: password.value
