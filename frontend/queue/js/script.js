@@ -3,7 +3,8 @@ const btn = document.getElementById('normal-send-button');
 btn.addEventListener('click', event => {
     data = {
         'text': document.getElementById('input-to-chat').value,
-        'private': 0
+        'private': 0,
+        'chat_id': 1
     }
 
     console.log(data);
