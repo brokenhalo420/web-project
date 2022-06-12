@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Преглед на опашка</title>
     <link rel="stylesheet" href="./css/teach_view.css">
-    <script defer src="./js/events.js"></script>
+    <script defer src="./js/nqkakuvscript.js"></script>
 </head>
 
 <body>
@@ -19,8 +19,7 @@
     <section class="btn-group">
         <button>Добави всички</button>
         <button>Добави всички временно</button>
-        <button>Изчисти опашка</button>
-       
+        <button id="clear-queue" onclick="clearTable()">Изчисти опашка</button>
     </section> 
 
     <section id="newsect">
@@ -28,14 +27,14 @@
         <article class="child">
             <!-- style="width: 300px;" -->
            
-                <table class="students-table">
+                <table id="table" class="students-table">
 
                     <thead>
                         <th>Позиция</th>
                         <th >Имена</th>
                         <th>Добави</th>
                     </thead>
-                    <tbody>
+                    <tbody id="tablebody">
                         <tr>
                             <td>1.</td>
                             <td>ИванИванИван ИванИванИван</td>
