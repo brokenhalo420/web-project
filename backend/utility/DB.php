@@ -5,7 +5,7 @@
 
         public function __construct()
         {
-            $configurations = json_decode(file_get_contents($this->config));
+            $configurations = json_decode(file_get_contents($this->config,1),true);
 
             $host = $configurations["host"];
             $dbname = $configurations["database-name"];
