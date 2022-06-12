@@ -97,21 +97,7 @@ button#send-button{
     margin-top: 10%;
 }
 
-/* table{
-    overflow-y:scroll;
-    height:100px;
-    display:block;
- } */
 
-table#invite-table{
-    display: flex;
-    overflow-y:scroll;
-    height:200px;
-    display:block;
-    border: 1px solid black;
-    width: auto;
-    align-self: center;
-}
 input#time{
     width: fit-content;
 }
@@ -122,4 +108,39 @@ td{
     width: 600px;
 }
 
+#invited-users{
+    width: 450px;
+    display: flex;
+    overflow-y:auto;
+    min-height:300px;
+}
 
+.invite-table{
+    
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    min-width: 450px;
+}
+.invite-table thead tr{
+    background-color: #009879;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+.invite-table th,
+.invite-table td{
+    padding: 12px 15px;
+}
+
+.invite-table tbody tr{
+    border-bottom: 1px solid grey;
+}
+
+.invite-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.invite-table tbody tr:last-of-type{
+    border-bottom:2px solid #009879;
+}

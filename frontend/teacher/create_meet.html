@@ -27,7 +27,7 @@
             <h2>Пoлучатели:</h2>
 
 
-            <section>
+            <section id="user-info">
                 <label for="email">Имейл на получател:</label>
                 <input id="email" type="email" required>
 
@@ -37,30 +37,36 @@
 
 
             <button id="addinvite-button">Добави</button>
-            <table id="invite-table">
+            <section id="invited-users">
+                <table class="invite-table">
 
-                <tr>
-                    <th>Имейл</th>
-                    <th>Час</th>
-                </tr>
-                <!--To do...-->
-                <tr>
-                    <td>ivann5588888888888888883@gmail.com</td>
-                    <td>9:00</td>
-                </tr>
-                <tr>
-                    <td>ivann5583@gmail.com</td>
-                    <td>9:00</td>
-                </tr>
-                <tr>
-                    <td>ivann5583@gmail.com</td>
-                    <td>9:00</td>
-                </tr>
-                <tr>
-                    <td>ivann5583@gmail.com</td>
-                    <td>9:00</td>
-                </tr>
-            </table>
+                    <thead>
+                        <th>Имейл</th>
+                        <th>Час</th>
+                    </thead>
+                    <!--To do...-->
+                    <tbody>
+                        <tr>
+                            <td>ivann5588888888888888883@gmail.com</td>
+                            <td>9:00</td>
+                        </tr>
+                        <tr>
+                            <td>ivann5583@gmail.com</td>
+                            <td>9:00</td>
+                        </tr>
+                        <tr>
+                            <td>ivann5583@gmail.com</td>
+                            <td>9:00</td>
+                        </tr>
+                        <tr>
+                            <td>ivann5583@gmail.com</td>
+                            <td>9:00</td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </section>
+            
 
                 <button id="send-button">Изпрати покани</button>
                 <button id="cancel-btn">Отмяна</button>
