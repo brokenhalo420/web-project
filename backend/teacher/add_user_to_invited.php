@@ -7,6 +7,8 @@
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
             $result->execute(['username'=> $username['username']]);
+            echo '10 ROW LOOK HERE HERE';
+            var_dump($result->fetchAll());
             if ($result->rowCount() != 0) {
 
                 $invites = $result->fetch(PDO::FETCH_ASSOC);
@@ -29,6 +31,8 @@
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
             $result->execute(getUserId($username));
+            var_dump(getUserId($username));
+            var_dump($username);
             if ($result->rowCount() != 0) {
 
                 $invites = $result->fetch(PDO::FETCH_ASSOC);
@@ -46,7 +50,7 @@
     }
 
     $queueName = json_decode(file_get_contents("php://input"),true);
-    if($queueName && isset($queueName['name'])){
+    if($queueName && isset($queueName['username'])){
         try {
             $invites = getLink($queueName);
             if($invites){

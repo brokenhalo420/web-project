@@ -3,11 +3,11 @@
 
 
     function getInviteData($data){
-        $SQL = "SELECT queues.name, queues.id from queues where queues.name=:name && id=:id";
+        $SQL = "SELECT queues.name, queues.id from queues where queues.name=:name";
         try{
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
-            $result->execute(['name' => $data['name'],'id' => $data['id']]);
+            $result->execute(['name' => $data['name']]);
             if ($result->rowCount() != 0) {
 
                 $invites = $result->fetch(PDO::FETCH_ASSOC);

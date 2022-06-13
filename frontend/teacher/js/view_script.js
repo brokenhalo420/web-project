@@ -12,7 +12,7 @@ document.cookie.split('; ').forEach(el => {
 const title = document.getElementById('room-name');
 title.innerHTML = decodeURI(mycookies['queue_name']);
 
-function createThing(username) {
+function createThing(username, num) {
     const li = document.createElement('li');
 
     const sectMain = document.createElement('section');
@@ -34,6 +34,7 @@ function createThing(username) {
     const btn2 = document.createElement('button');
     btn2.innerHTML = "Добави временно";
     btn2.className = 'tempAdd-button tempAdd';
+    btn1.setAttribute('id', "btn-" + num);
 
     sec2.appendChild(btn1);
     sec2.appendChild(btn2);
@@ -42,7 +43,7 @@ function createThing(username) {
     li.appendChild(sectMain);
     return li;
 }
-setInterval(demo, 5000);
+demo();
 
 const btn = document.getElementById('normal-send-button');
 
@@ -104,7 +105,7 @@ function sleep(ms) {
 
 async function demo() {
     while (true) {
-        await sleep(1000);
+        await sleep(5000);
         fetch('../../backend/chatbox/refresh_messages.php')
             .then(res => res.json())
             .then(msg => {
@@ -121,6 +122,7 @@ async function demo() {
     }
 }
 
+let n = 0;
 function refreshQueue() {
     data = getData();
     fetch('../../backend/teacher/refresh_queue.php', {
@@ -133,41 +135,44 @@ function refreshQueue() {
         .then(msg => {
             var s = document.getElementById('ordered-list');
             s.innerHTML = '';
+            n = 0;
             for (var i of msg) {
-                var p = createThing(i['username']);
+                n += 1;
+                var p = createThing(i['username'], n);
                 p.style.marginLeft = "10px";
                 p.style.display = "list-item";
                 s.appendChild(p);
             }
+            const buttons = document.getElementById('ordered-list').childNodes;
 
-        })
-}
+            for (let count = 1; count <= n; count++) {
+                var username = {
+                    username: mycookies['username']
+                };
+                button = document.getElementById('btn-' + count);
+                button.addEventListener('click', event => {
+                    fetch('./../../backend/teacher/add_user_to_invited.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(username)
+                    })
+                        .then(res => res.json)
+                        .then(msg => {
+                            if (!msg['status'] === "SUCCESS") {
+                                return;
+                            }
+                        })
 
-
-const buttons = document.getElementsByClassName('add');
-
-for (let button of buttons) {
-    var username = {
-        username: mycookies['username']
-    };
-    button.addEventListener('click', event => {
-        fetch('./../../backend/teacher/add_user_to_invited.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(username)
-        })
-        .then(res => res.json)
-        .then(msg => {
-            if(!msg['status'] === "SUCCESS"){
-                return;
+                    event.preventDefault();
+                });
             }
-
-            window.location.reload();
         })
 
-    });
 }
+
+
+
 
 
