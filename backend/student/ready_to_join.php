@@ -27,11 +27,11 @@
     $queueName = json_decode(file_get_contents("php://input"),true);
     if($queueName && isset($queueName['name'])){
         try {
-            $isInvited = getInviteData($queueName);
-            if($invites){
+            $isInvited = canJoin($queueName);
+            if($isInvited){
                 http_response_code(200);
                 echo json_encode(['status' => 'SUCCESS']);
-                setcookie('isInvited',$invites['can-join'],null, '/');
+                setcookie('isInvited',$isInvited['can-join'],null, '/');
             }
             else {
                 http_response_code(202);

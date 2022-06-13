@@ -10,8 +10,10 @@ else {
     window.location.href = "./../login/login.html";
 }
 
+leaveButton = document.getElementById('leave-button');
 if(mycookies['url']){
-    window.open(mycookies['url']);
+    //window.open(mycookies['url']);
+    window.open(decodeURIComponent(mycookies['url']),'_blank');
     leaveButton.click();
 }
 
@@ -53,7 +55,6 @@ btn.addEventListener('click', event => {
 })
 
 
-leaveButton = document.getElementById('leave-button');
 leaveButton.addEventListener('click', event => {
     data = getData();
 
@@ -138,6 +139,7 @@ async function demo() {
 
             })
         refreshQueue();
+        checkIfReadyToJoin();
     }
 }
 
@@ -164,7 +166,7 @@ function refreshQueue() {
 
 function checkIfReadyToJoin() {
     data = {
-        name: mycookies['queue_name']
+        name: decodeURI(mycookies['queue_name'])
     }
     fetch('../../backend/student/ready_to_join.php', {
         method: 'POST',
@@ -175,6 +177,7 @@ function checkIfReadyToJoin() {
     }).then(res => res.json())
         .then(msg => {
             if (!msg['status'] === "SUCCESS") {
+                console.log('so bad 179');
                 return;
             }
             let link = '';
@@ -188,18 +191,12 @@ function checkIfReadyToJoin() {
             .then(res => res.json())
             .then(message => {
                 if(!message['status']==="SUCCESS"){
+                    console.log('so sad 192');
                     return;
                 }
-                window.location.reload();
+                //window.location.reload();
+                return;
             })
-            var s = document.getElementById('ordered-list');
-            s.innerHTML = '';
-            for (var i of msg) {
-                var p = document.createElement('li');
-                p.textContent = i['username'];
-                s.appendChild(p);
-            }
-
         })
 }
 
