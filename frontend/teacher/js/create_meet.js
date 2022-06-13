@@ -27,6 +27,7 @@ function fillListWithEmails() {
 
 sendBtn = document.getElementById('send-button');
 sendBtn.addEventListener('click', event => {
+    let markedABox = false;
     let link = document.getElementById('url').value;
     let roomName = document.getElementById('roomName').value;
     let queue_id;
@@ -46,6 +47,7 @@ sendBtn.addEventListener('click', event => {
             checkboxes = document.getElementsByClassName('send-invite-checkbox');
             for (let i = 0; i < checkboxes.length; i++) {
                 if (checkboxes[i].checked == true) {
+                    markedABox = true;
                     email = checkboxes[i].getAttribute('name');
                     userInviteJson = {
                         'email': email,
@@ -68,9 +70,16 @@ sendBtn.addEventListener('click', event => {
                 }
             }
             if (msg["status"] == 'fail') {
-                console.log('mn sizle')
                 alert('FAIL');
             }
+
+            if (markedABox === true) {
+                document.getElementById('result-message').innerHTML = "Успешно изпратихте покана за присъединяване към опашката на избраните потребители!";
+            }
+            else {
+                document.getElementById('result-message').innerHTML = "Не сте избрали потребител на когото да пратите покана!";
+            }
+
         })
 
     event.preventDefault();

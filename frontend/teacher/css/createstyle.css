@@ -33,6 +33,7 @@ article {
     padding-bottom: 3%;
     flex-shrink: 1;
     min-width: 200px;
+    background-color:rgba(104, 10, 34, 0.556);
 }
 
 form {
@@ -120,7 +121,7 @@ td{
 }
 
 .invite-table{
-    background-color: red;
+    background-color: rgba(57, 19, 57, 0.384);
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 1em;
