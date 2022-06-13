@@ -7,90 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Преглед на опашка</title>
     <link rel="stylesheet" href="./css/teach_view.css">
-    <script defer src="./js/nqkakuvscript.js"></script>
+    <script defer src="./js/view_script.js"></script>
 </head>
 
 <body>
     <header>
         <img id="logo" src="./img/pagelogo.png">
     </header>
-    <h1>ЧАКАЛНЯ ЗА СТАЯ НОМЕР ____</h1>
+    <h1 id="room-name">ЧАКАЛНЯ ЗА СТАЯ НОМЕР ____</h1>
 
     <section class="btn-group">
         <button>Добави всички</button>
         <button>Добави всички временно</button>
         <button id="clear-queue" onclick="clearTable()">Изчисти опашка</button>
-        <!-- <button id="join-button">Зареди опашка</button> -->
     </section>
 
     <section id="newsect">
-
         <article class="child">
-            <!-- style="width: 300px;" -->
-
             <section id="queue">
-                <ol id="list">
+                <ol id="ordered-list">
                     
                 </ol>
             </section>
-                <!-- <table id="table" class="students-table">
-
-                    <thead>
-                        <th>Позиция</th>
-                        <th >Имена</th>
-                        <th>Добави</th>
-                    </thead>
-                    <tbody id="tablebody">
-                        <tr>
-                            <td>1.</td>
-                            <td id="table-data">ИванИванИван ИванИванИван</td>
-                            <td>  <section class="buttons">
-                                <button id="add-button">Добави</button>
-                                <button id="tempAdd-button">Добави временно</button>
-                            </section></td>
-                        </tr>
-                        <tr>
-                            <td>1.</td>
-                            <td>ИванИванИван ИванИванИван</td>
-                            <td>  <section class="buttons">
-                                <button id="add-button">Добави</button>
-                                <button id="tempAdd-button">Добави временно</button>
-                            </section></td>
-                        </tr>
-                        <tr>
-                            <td>1.</td>
-                            <td>ИванИванИван ИванИванИван</td>
-                            <td>  <section class="buttons">
-                                <button id="add-button">Добави</button>
-                                <button id="tempAdd-button">Добави временно</button>
-                            </section></td>
-                        </tr>
-                        <tr>
-                            <td>1.</td>
-                            <td>ИванИванИван ИванИванИван</td>
-                            <td>  <section class="buttons">
-                                <button id="add-button">Добави</button>
-                                <button id="tempAdd-button">Добави временно</button>
-                            </section></td>
-                        </tr>
-                    </tbody>
-
-                </table> -->
-
-
-
         </article>
         <section id="chatroom" class="child">
             <section id="chatroom-content">
                 <section id="messages">
-                    <p>message1</p>
                 </section>
                 <input type="text" name="" id="input-to-chat">
                 <button id="normal-send-button">send</button>
-
-
             </section>
-
         </section>
 
     </section>

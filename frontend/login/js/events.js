@@ -6,7 +6,7 @@ if (cookie != "") {
         mycookies[key.trim()] = value;
     })
     if (mycookies['type'] === 'TEACHER') {
-        window.location.href ='./../teacher/techer_main.html';
+        window.location.href = './../teacher/teacher_main.html';
     }
     else if (mycookies['type'] === 'STUDENT') {
         window.location.href = './../student/student_account.html';
@@ -26,17 +26,17 @@ function sleep(ms) {
 
         let isValid = true;
 
-        if(!/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username.value)){
+        if (!/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(username.value)) {
             alert("Username must be between 8 and 20 characters. It must not begin or end with any special characters");
             isValid = false;
         }
 
-        if(!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password.value)){
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(password.value)) {
             alert("Password must be at minimum eight characters, at least one uppercase letter, one lowercase letter and one number.");
             isValid = false;
         }
 
-        if(!isValid){
+        if (!isValid) {
             event.preventDefault(true);
             return;
         }
@@ -62,12 +62,7 @@ function sleep(ms) {
                     const success_msg = construct_msg_box("Successful login!", 'SUCCESS', form.style.width);
                     form.appendChild(success_msg);
                     sleep(3000).then(() => {
-                        if (mycookies['type'] === 'TEACHER') {
-                            window.location.href ='./../teacher/techer_main.html';
-                        }
-                        else if (mycookies['type'] === 'STUDENT') {
-                            window.location.href = './../student/student_account.html';
-                        }
+                        window.location.reload();
                     });
                 }
                 else {

@@ -1,18 +1,3 @@
-const cookie = document.cookie;
-let mycookies = {};
-if (cookie != "") {
-    cookie.split('; ').forEach(el => {
-        let [key, value] = el.split('=');
-        mycookies[key.trim()] = value;
-    })
-    if (mycookies['type'] === 'TEACHER') {
-        window.location.href ='./../teacher/techer_view.html';
-    }
-    else if (mycookies['type'] === 'STUDENT') {
-        window.location.href = './../student/student_account.html';
-    }
-}
-
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }

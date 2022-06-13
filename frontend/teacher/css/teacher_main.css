@@ -23,7 +23,7 @@ main#main-section {
     display: flex;
     justify-content: top;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: center; 
     align-content: flex-start;
     width: 40%;
     height: 600px;
@@ -65,7 +65,7 @@ section.invite{
     height: 80px;
     background-color: rgba(57, 19, 57, 0.384);
 }
-section.create{
+section#create{
     display: flex;
     align-self: center;
     align-content: center;
@@ -75,13 +75,14 @@ section.create{
     height: 80px;
     margin-top: 3%;
     background-color: rgba(57, 19, 57, 0.384);
+    min-width: fit-content;
 }
 
 section.invite:hover, section.invite:active {
     cursor: pointer;
     background-color: rgba(34, 14, 33, 0.481);
 }
-section.create:hover, section.create:active {
+section#create:hover, section.create:active {
     cursor: pointer;
     background-color: rgba(34, 14, 33, 0.481);
 }

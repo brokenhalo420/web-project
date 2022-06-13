@@ -3,11 +3,11 @@
 
 
     function getInvites($username){
-        $SQL = "SELECT * FROM invites";
+        $SQL = "SELECT * FROM `queues` JOIN invites on queues.id=invites.queue_id";
         try{
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
-            $result->execute(['username' => $username['username']]);
+            $result->execute();
             if ($result->rowCount() != 0) {
 
                 $invites = $result->fetchAll();

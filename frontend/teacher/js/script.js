@@ -10,9 +10,14 @@ document.cookie.split('; ').forEach(el => {
 });
 
 (() => {
-    setInterval(getAllInvites, 2000);
+    setInterval(getAllInvites, 5000);
 })();
 
+const createInviteButton = document.getElementById('create');
+
+createInviteButton.addEventListener('click', event => {
+    window.location.href='./create_meet.html';
+})
 
 function getAllInvites() {
     let data = {
@@ -31,23 +36,28 @@ function getAllInvites() {
                 document.getElementById('no-invite-message').style.display = 'block';
                 return;
             }
+            else{
+                document.getElementById('no-invite-message').style.display = 'none';
+            }
 
             let data = msg['invites'];
             let container = document.getElementById('invites');
 
             container.innerHTML = '';
             for (let invite of data) {
-                let inviteEntry = createInvite(invite['name']);
+                let inviteEntry = createInvite(invite['name'],invite['id']);
                 container.appendChild(inviteEntry);
             }
 
-            const invites = document.getElementsByClassName('invite');
+            const invites = document.getElementById('invites');
+            
 
-            for (var invite of invites) {
-                invite.addEventListener('click', event => {
+            for (var invite of invites.children) {
+                    invite.addEventListener('click', event => {
                     const value = invite.lastChild.firstChild.textContent;
                     const name = {
-                        name: value
+                        name: value,
+                        id: invite.getAttribute('id')
                     };
                     fetch('./../../backend/teacher/join_invite.php', {
                         method: 'POST',
@@ -57,10 +67,10 @@ function getAllInvites() {
                         body: JSON.stringify(name)
                     })
                         .then(res => res.json())
-                        .then(msg => {
-                            if (msg['status'] === 'SUCCESS') {
+                        .then(message => {
+                            if (message['status'] === 'SUCCESS') {
                                 if (myCookies['type'] === "TEACHER") {
-                                    window.location.href = './../teacher/teacher_view.html';
+                                    window.location.href = './../teacher/techer_view.html';
                                 }
                                 else if (myCookies['type'] === 'STUDENT') {
                                     window.location.href = './../queue/queue.html';
@@ -76,9 +86,10 @@ function getAllInvites() {
         })
 }
 
-function createInvite(name) {
+function createInvite(name,id) {
     let section = document.createElement('section');
     section.setAttribute('class', 'invite');
+    section.setAttribute('id',id);
 
     let img = document.createElement('img');
     img.setAttribute('class', 'meet-icon');

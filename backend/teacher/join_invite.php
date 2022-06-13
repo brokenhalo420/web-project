@@ -2,12 +2,12 @@
     require_once("../utility/db.php");
 
 
-    function getInviteData($name){
-        $SQL = "SELECT queues.name, queues.id from queues where queues.name=:name";
+    function getInviteData($data){
+        $SQL = "SELECT queues.name, queues.id from queues where queues.name=:name && id=:id";
         try{
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
-            $result->execute($name);
+            $result->execute(['name' => $data['name'],'id' => $data['id']]);
             if ($result->rowCount() != 0) {
 
                 $invites = $result->fetch(PDO::FETCH_ASSOC);
@@ -24,15 +24,16 @@
 
     }
 
-    $queueName = json_decode(file_get_contents("php://input"),true);
-    if($queueName && isset($queueName['name'])){
+    $data = json_decode(file_get_contents("php://input"),true);
+    if($data && isset($data['name']) && isset($data['id'])){
         try {
-            $invites = getInviteData($queueName);
+            $invites = getInviteData($data);
             if($invites){
                 http_response_code(200);
+                setcookie('queue_name',$data['name'],null, '/');
+                setcookie('queue_id',$data['id'],null, '/');
                 echo json_encode(['status' => 'SUCCESS']);
-                setcookie('queue_name',$invites['name'],null, '/');
-                setcookie('queue_id',$invites['id'],null, '/');
+                exit();
             }
             else {
                 http_response_code(202);
