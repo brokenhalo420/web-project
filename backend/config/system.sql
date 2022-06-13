@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2022 at 02:55 AM
+-- Generation Time: Jun 13, 2022 at 03:24 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -162,8 +162,8 @@ ALTER TABLE `queueusers`
 --
 ALTER TABLE `userinvites`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_id of userinvites` (`user_id`),
-  ADD UNIQUE KEY `invite_id of userinvites` (`invite_id`);
+  ADD KEY `user_id of userinvites` (`user_id`) USING BTREE,
+  ADD KEY `invite_id of userinvites` (`invite_id`) USING BTREE;
 
 --
 -- Indexes for table `users`
