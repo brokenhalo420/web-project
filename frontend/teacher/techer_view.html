@@ -20,14 +20,20 @@
         <button>Добави всички</button>
         <button>Добави всички временно</button>
         <button id="clear-queue" onclick="clearTable()">Изчисти опашка</button>
-    </section> 
+        <!-- <button id="join-button">Зареди опашка</button> -->
+    </section>
 
     <section id="newsect">
 
         <article class="child">
             <!-- style="width: 300px;" -->
-           
-                <table id="table" class="students-table">
+
+            <section id="queue">
+                <ol id="list">
+                    
+                </ol>
+            </section>
+                <!-- <table id="table" class="students-table">
 
                     <thead>
                         <th>Позиция</th>
@@ -37,7 +43,7 @@
                     <tbody id="tablebody">
                         <tr>
                             <td>1.</td>
-                            <td>ИванИванИван ИванИванИван</td>
+                            <td id="table-data">ИванИванИван ИванИванИван</td>
                             <td>  <section class="buttons">
                                 <button id="add-button">Добави</button>
                                 <button id="tempAdd-button">Добави временно</button>
@@ -69,7 +75,9 @@
                         </tr>
                     </tbody>
 
-                </table>
+                </table> -->
+
+
 
         </article>
         <section id="chatroom" class="child">
@@ -79,19 +87,19 @@
                 </section>
                 <input type="text" name="" id="input-to-chat">
                 <button id="normal-send-button">send</button>
-                
-                <button id="private-send-button">private send</button>
+
+
             </section>
 
         </section>
-       
+
     </section>
 
     <section id="wait-time">
        <label for="time">Средно време за изчакване:</label>
        <input id="time" type="time">
     </section>
-    
+
     <button id="exit-btn">Прекрати срещата</button>
 </body>
 

@@ -2,15 +2,15 @@
     require_once("../utility/db.php");
 
 
-    function getInvites($username){
-        $SQL = "SELECT name from queues where queues.id in (SELECT queue_id from (invites join userinvites as uui) join users as mei where mei.username like :username )";
+    function getInviteData($name){
+        $SQL = "SELECT queues.name, queues.id from queues where queues.name=:name";
         try{
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
-            $result->execute(['username' => $username['username']]);
+            $result->execute($name);
             if ($result->rowCount() != 0) {
 
-                $invites = $result->fetchAll();
+                $invites = $result->fetch(PDO::FETCH_ASSOC);
 
                 return $invites;
 
@@ -24,17 +24,19 @@
 
     }
 
-    $username = json_decode(file_get_contents("php://input"),true);
-    if($username && isset($username['username'])){
+    $queueName = json_decode(file_get_contents("php://input"),true);
+    if($queueName && isset($queueName['name'])){
         try {
-            $invites = getInvites($username);
+            $invites = getInviteData($queueName);
             if($invites){
                 http_response_code(200);
-                echo json_encode(['status' => 'SUCCESS', 'invites' => $invites]);
+                echo json_encode(['status' => 'SUCCESS']);
+                setcookie('queue_name',$invites['name'],null, '/');
+                setcookie('queue_id',$invites['id'],null, '/');
             }
             else {
                 http_response_code(202);
-                echo json_encode(['status' => 'SUCCESS', 'message' => 'No invites for this user']);
+                echo json_encode(['status' => 'SUCCESS', 'message' => 'No such queue exists']);
             }
             
         } catch (PDOException $e){

@@ -3,7 +3,7 @@
 
 
     function getInvites($username){
-        $SQL = "SELECT name from queues where queues.id in (SELECT queue_id from (invites join userinvites as uui) join users as mei where mei.username like :username )";
+        $SQL = "SELECT * FROM invites";
         try{
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);

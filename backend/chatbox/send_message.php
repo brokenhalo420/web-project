@@ -12,7 +12,7 @@ catch(PDOException $pd) {
 $con = $db->getConnection();
 
 $data = json_decode(file_get_contents('php://input'),true);
-$query = "INSERT INTO messages (text, private, chat_id) VALUES (:text, :private, :chat_id)";
+$query = "INSERT INTO messages (text, private, chat_id) VALUES (:text, :private, :id)";
 
 try {
     $result = $con->prepare($query);

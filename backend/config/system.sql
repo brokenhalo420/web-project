@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2022 at 11:32 PM
+-- Generation Time: Jun 13, 2022 at 03:24 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -80,7 +80,8 @@ CREATE TABLE `queueusers` (
   `user_id` int(255) NOT NULL,
   `queue_id` int(255) NOT NULL,
   `position` int(255) NOT NULL,
-  `startTime` time NOT NULL
+  `startTime` time NOT NULL,
+  `ready_to_join` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -116,7 +117,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `password`, `type`) VALUES
-(373, 'Milen', 'Petrov', 'milen.petrov@gmail.com', 'milen1406', '5249f3b45cd4b5ba3efa537e87060edf538a81696dfe5d05b57cd6bdb3a3bcc8', 'TEACHER');
+(1, 'Milen', 'Petrov', 'milen.petrov@gmail.com', 'milen1406', '5249f3b45cd4b5ba3efa537e87060edf538a81696dfe5d05b57cd6bdb3a3bcc8', 'TEACHER');
 
 --
 -- Indexes for dumped tables
@@ -161,8 +162,8 @@ ALTER TABLE `queueusers`
 --
 ALTER TABLE `userinvites`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_id of userinvites` (`user_id`),
-  ADD UNIQUE KEY `invite_id of userinvites` (`invite_id`);
+  ADD KEY `user_id of userinvites` (`user_id`) USING BTREE,
+  ADD KEY `invite_id of userinvites` (`invite_id`) USING BTREE;
 
 --
 -- Indexes for table `users`
@@ -191,7 +192,7 @@ ALTER TABLE `invites`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `queues`
@@ -203,7 +204,7 @@ ALTER TABLE `queues`
 -- AUTO_INCREMENT for table `queueusers`
 --
 ALTER TABLE `queueusers`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `userinvites`
@@ -215,7 +216,7 @@ ALTER TABLE `userinvites`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=374;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
 
 --
 -- Constraints for dumped tables

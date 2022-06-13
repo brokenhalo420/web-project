@@ -1,3 +1,7 @@
+if(document.cookie == ''){
+    window.location.href="./../login/login.html";
+}
+
 let data = {};
 let myCookies = {};
 document.cookie.split('; ').forEach(el => {
@@ -7,8 +11,6 @@ document.cookie.split('; ').forEach(el => {
 
 (() => {
     setInterval(getAllInvites, 2000);
-
-
 })();
 
 
@@ -16,7 +18,7 @@ function getAllInvites() {
     let data = {
         username: myCookies['username']
     };
-    fetch('./../../backend/student/get_student_invites.php', {
+    fetch('./../../backend/teacher/get_teacher_invites.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -47,7 +49,7 @@ function getAllInvites() {
                     const name = {
                         name: value
                     };
-                    fetch('./../../backend/student/join_invite.php', {
+                    fetch('./../../backend/teacher/join_invite.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

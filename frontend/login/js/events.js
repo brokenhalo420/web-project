@@ -6,7 +6,7 @@ if (cookie != "") {
         mycookies[key.trim()] = value;
     })
     if (mycookies['type'] === 'TEACHER') {
-        window.location.href ='./../teacher/techer_view.html';
+        window.location.href ='./../teacher/techer_main.html';
     }
     else if (mycookies['type'] === 'STUDENT') {
         window.location.href = './../student/student_account.html';
@@ -62,7 +62,12 @@ function sleep(ms) {
                     const success_msg = construct_msg_box("Successful login!", 'SUCCESS', form.style.width);
                     form.appendChild(success_msg);
                     sleep(3000).then(() => {
-                        window.location.reload();
+                        if (mycookies['type'] === 'TEACHER') {
+                            window.location.href ='./../teacher/techer_main.html';
+                        }
+                        else if (mycookies['type'] === 'STUDENT') {
+                            window.location.href = './../student/student_account.html';
+                        }
                     });
                 }
                 else {
