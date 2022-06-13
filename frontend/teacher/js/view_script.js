@@ -144,4 +144,30 @@ function refreshQueue() {
 }
 
 
+const buttons = document.getElementsByClassName('add');
+
+for (let button of buttons) {
+    var username = {
+        username: mycookies['username']
+    };
+    button.addEventListener('click', event => {
+        fetch('./../../backend/teacher/add_user_to_invited.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(username)
+        })
+        .then(res => res.json)
+        .then(msg => {
+            if(!msg['status'] === "SUCCESS"){
+                return;
+            }
+
+            window.location.reload();
+        })
+
+    });
+}
+
 

@@ -6,8 +6,13 @@ if (cookie != "") {
         mycookies[key.trim()] = value;
     })
 }
-else{
-    window.location.href="./../login/login.html";
+else {
+    window.location.href = "./../login/login.html";
+}
+
+if(mycookies['url']){
+    window.open(mycookies['url']);
+    leaveButton.click();
 }
 
 const label = document.getElementById('room-name');
@@ -31,13 +36,13 @@ btn.addEventListener('click', event => {
         },
         body: JSON.stringify(data)
     }).then(res => res.json())
-    .then(msg => {
-        console.log(msg);
-        if(msg["status"] == 'fail') {
-            console.log('mn sizle')
-            alert('FAIL');
-        }
-    })
+        .then(msg => {
+            console.log(msg);
+            if (msg["status"] == 'fail') {
+                console.log('mn sizle')
+                alert('FAIL');
+            }
+        })
     const msgSection = document.getElementById('messages');
     const p = document.createElement('p');
     p.innerHTML = mycookies['username'] + ': ' + data['text'];
@@ -59,13 +64,13 @@ leaveButton.addEventListener('click', event => {
         },
         body: JSON.stringify(data)
     }).then(res => res.json())
-    .then(msg => {
-        console.log(msg);
-        if(msg["status"] == 'fail') {
-            console.log('mn sizle')
-            alert('FAIL');
-        }
-    })
+        .then(msg => {
+            console.log(msg);
+            if (msg["status"] == 'fail') {
+                console.log('mn sizle')
+                alert('FAIL');
+            }
+        })
     refreshQueue();
 })
 
@@ -79,13 +84,13 @@ joinButton.addEventListener('click', event => {
         },
         body: JSON.stringify(data)
     }).then(res => res.json())
-    .then(msg => {
-        console.log(msg);
-        if(msg["status"] == 'fail') {
-            console.log('mn sizle')
-            alert('FAIL');
-        }
-    })
+        .then(msg => {
+            console.log(msg);
+            if (msg["status"] == 'fail') {
+                console.log('mn sizle')
+                alert('FAIL');
+            }
+        })
 
     let msgSection = document.getElementById('ordered-list');
     let p = document.createElement('li');
@@ -94,17 +99,17 @@ joinButton.addEventListener('click', event => {
     event.preventDefault(true);
 })
 
-function getData(){
+function getData() {
     const cookieValueUsername = document.cookie
-    .split('; ')
-    .find(row => row.startsWith('username'))
-    .split('=')[1];
+        .split('; ')
+        .find(row => row.startsWith('username'))
+        .split('=')[1];
 
     const cookieValuePassword = document.cookie
-    .split('; ')
-    .find(row => row.startsWith('password'))
-    .split('=')[1];
-    
+        .split('; ')
+        .find(row => row.startsWith('password'))
+        .split('=')[1];
+
     data = {
         'username': cookieValueUsername,
         'password': cookieValuePassword,
@@ -118,37 +123,78 @@ function sleep(ms) {
 }
 
 async function demo() {
-    while(true) {
+    while (true) {
         await sleep(1000);
         fetch('../../backend/chatbox/refresh_messages.php')
-        .then(res => res.json())
-        .then(msg => {
-            var s = document.getElementById('messages');
-            s.innerHTML = '';
-            for(var i of msg) {
-                var p = document.createElement('p');
-                p.textContent = mycookies['username'] + ': ' + i['text'];
-                s.appendChild(p);
-            }
+            .then(res => res.json())
+            .then(msg => {
+                var s = document.getElementById('messages');
+                s.innerHTML = '';
+                for (var i of msg) {
+                    var p = document.createElement('p');
+                    p.textContent = mycookies['username'] + ': ' + i['text'];
+                    s.appendChild(p);
+                }
 
-        })
+            })
         refreshQueue();
     }
 }
 
 function refreshQueue() {
     data = getData();
-        fetch('../../backend/queue/refresh_queue.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }).then(res => res.json())
+    fetch('../../backend/queue/refresh_queue.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => res.json())
         .then(msg => {
             var s = document.getElementById('ordered-list');
             s.innerHTML = '';
-            for(var i of msg) {
+            for (var i of msg) {
+                var p = document.createElement('li');
+                p.textContent = i['username'];
+                s.appendChild(p);
+            }
+
+        })
+}
+
+function checkIfReadyToJoin() {
+    data = {
+        name: mycookies['queue_name']
+    }
+    fetch('../../backend/student/ready_to_join.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+        .then(msg => {
+            if (!msg['status'] === "SUCCESS") {
+                return;
+            }
+            let link = '';
+            fetch('../../backend/student/get_link.php',{
+                method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(message => {
+                if(!message['status']==="SUCCESS"){
+                    return;
+                }
+                window.location.reload();
+            })
+            var s = document.getElementById('ordered-list');
+            s.innerHTML = '';
+            for (var i of msg) {
                 var p = document.createElement('li');
                 p.textContent = i['username'];
                 s.appendChild(p);
