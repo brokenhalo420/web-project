@@ -27,7 +27,6 @@ function fillListWithEmails() {
 
 sendBtn = document.getElementById('send-button');
 sendBtn.addEventListener('click', event => {
-    //create an invite, get its id
     let link = document.getElementById('url').value;
     let roomName = document.getElementById('roomName').value;
     let queue_id;
@@ -43,10 +42,7 @@ sendBtn.addEventListener('click', event => {
         body: JSON.stringify(createRoomJson)
     }).then(res => res.json())
         .then(msg => {
-            //below look
             queue_id = msg['id'];
-            //console.log(msg + '\nMSG TUKA TUKA DOLU QEU \n');
-            //console.log(queue_id + 'TUYKA TUKA TKA TKA');
             checkboxes = document.getElementsByClassName('send-invite-checkbox');
             for (let i = 0; i < checkboxes.length; i++) {
                 if (checkboxes[i].checked == true) {
@@ -76,10 +72,6 @@ sendBtn.addEventListener('click', event => {
                 alert('FAIL');
             }
         })
-
-
-    //send invite id to users
-    //create user invites - one invite per user- not all at once
 
     event.preventDefault();
 })

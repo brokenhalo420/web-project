@@ -21,7 +21,7 @@ try {
     $userDetails = $result -> fetch(PDO::FETCH_ASSOC);
 }
 catch(PDOException $pd) {
-    throw new Exception('ss');
+    throw new Exception('Error, could not select from users');
 }
 $query = "DELETE FROM queueusers WHERE user_id=:user_id";
 
@@ -30,7 +30,7 @@ try {
     $result->execute(['user_id' => $userDetails['id']]);
 }
 catch(PDOException $pd) {
-    throw new Exception('ss');
+    throw new Exception('Error, could not delete from queueusers');
 }
 
 echo json_encode(["status","success"]);

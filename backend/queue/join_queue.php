@@ -30,7 +30,7 @@ try {
     $result->execute(['user_id' => $userDetails['id'], 'queue_id' => $data['queue_id'], 'position' => 1, 'startTime' => date('h:i:sa')]);
 }
 catch(PDOException $pd) {
-    throw new Exception('ss');
+    throw new Exception('Error, could not insert queueusers into queueusers');
 }
 
 echo json_encode(["status","success"]);

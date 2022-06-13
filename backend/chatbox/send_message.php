@@ -19,7 +19,7 @@ try {
     $result->execute($data);
 }
 catch(PDOException $pd) {
-    throw new Exception('ss');
+    throw new Exception('Exception, could not insert message into messages');
 }
 
 echo json_encode(["status","success"]);
