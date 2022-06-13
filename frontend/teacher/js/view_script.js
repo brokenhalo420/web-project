@@ -146,10 +146,11 @@ function refreshQueue() {
             const buttons = document.getElementById('ordered-list').childNodes;
 
             for (let count = 1; count <= n; count++) {
-                var username = {
-                    username: mycookies['username']
-                };
                 button = document.getElementById('btn-' + count);
+                var unam = button.parentNode.parentNode.firstChild.firstChild.textContent;
+                var username = {
+                    username: unam
+                };
                 button.addEventListener('click', event => {
                     fetch('./../../backend/teacher/add_user_to_invited.php', {
                         method: 'POST',

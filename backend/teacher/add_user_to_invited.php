@@ -7,8 +7,8 @@
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
             $result->execute(['username'=> $username['username']]);
-            echo '10 ROW LOOK HERE HERE';
-            var_dump($result->fetchAll());
+            //echo '10 ROW LOOK HERE HERE';
+            //var_dump($result->fetchAll());
             if ($result->rowCount() != 0) {
 
                 $invites = $result->fetch(PDO::FETCH_ASSOC);
@@ -26,20 +26,22 @@
     }
 
     function getLink($username){
-        $SQL = "UPDATE queryusers SET can-join=true WHERE user_id=:user_id";
+        $SQL = "UPDATE queueusers SET ready_to_join=1 WHERE user_id=:user_id";
         try{
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
-            $result->execute(getUserId($username));
-            var_dump(getUserId($username));
-            var_dump($username);
-            if ($result->rowCount() != 0) {
+            //var_dump(getUserId($username)['id']);
+            //echo 'THIS WAS THE ID';//towa ni dawa id=2
+            $ran = getUserId($username)['id'];
+            $result->execute(['user_id' => $ran]);
+            if (1 == 1) {
 
                 $invites = $result->fetch(PDO::FETCH_ASSOC);
-
-                return $invites;
+                return true;
 
             } else {
+                echo 'WE ARE IN FALSE PLS ';
+                var_dump($result);
                 return false;
             }
 

@@ -7,7 +7,7 @@
         try{
             $db = new Database();
             $result = $db->getConnection()->prepare($SQL);
-            $result->execute($name);
+            $result->execute(['name' => $name['name']]);////<<<<
             if ($result->rowCount() != 0) {
 
                 $invites = $result->fetch(PDO::FETCH_ASSOC);
@@ -27,7 +27,7 @@
     $queueName = json_decode(file_get_contents("php://input"),true);
     if($queueName && isset($queueName['name'])){
         try {
-            $invites = getInviteData($queueName);
+            $invites = getLink($queueName);
             if($invites){
                 http_response_code(200);
                 echo json_encode(['status' => 'SUCCESS']);
