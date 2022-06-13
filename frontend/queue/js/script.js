@@ -1,9 +1,25 @@
+const cookie = document.cookie;
+let mycookies = {};
+if (cookie != "") {
+    cookie.split('; ').forEach(el => {
+        let [key, value] = el.split('=');
+        mycookies[key.trim()] = value;
+    })
+}
+else{
+    window.location.href="./../login/login.html";
+}
+
+const label = document.getElementById('room-name');
+label.textContent = decodeURI(mycookies['queue_name']);
+
 const btn = document.getElementById('normal-send-button');
 
 btn.addEventListener('click', event => {
     data = {
         'text': document.getElementById('input-to-chat').value,
-        'private': 0
+        'private': 0,
+        'id': mycookies['queue_id']
     }
 
     console.log(data);
@@ -24,7 +40,7 @@ btn.addEventListener('click', event => {
     })
     const msgSection = document.getElementById('messages');
     const p = document.createElement('p');
-    p.innerHTML = data['text'];
+    p.innerHTML = mycookies['username'] + ': ' + data['text'];
     msgSection.appendChild(p);
     document.getElementById('input-to-chat').value = "";
     msgSection.scrollTop = msgSection.scrollHeight;
@@ -92,7 +108,7 @@ function getData(){
     data = {
         'username': cookieValueUsername,
         'password': cookieValuePassword,
-        'queue_id': 1
+        'queue_id': mycookies['queue_id']
     };
     return data;
 }
@@ -103,7 +119,7 @@ function sleep(ms) {
 
 async function demo() {
     while(true) {
-        await sleep(3000);
+        await sleep(1000);
         fetch('../../backend/chatbox/refresh_messages.php')
         .then(res => res.json())
         .then(msg => {
@@ -111,7 +127,7 @@ async function demo() {
             s.innerHTML = '';
             for(var i of msg) {
                 var p = document.createElement('p');
-                p.textContent = i['text'];
+                p.textContent = mycookies['username'] + ': ' + i['text'];
                 s.appendChild(p);
             }
 
