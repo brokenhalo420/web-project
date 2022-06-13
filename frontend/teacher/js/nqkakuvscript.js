@@ -1,3 +1,8 @@
+if(document.cookie == ''){
+    window.location.href="./../login/login.html";
+}
+
+
 //delete table rows
 var node = document.getElementById("tablebody");
 
