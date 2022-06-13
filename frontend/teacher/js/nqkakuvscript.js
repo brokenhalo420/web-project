@@ -62,8 +62,8 @@ joinButton.addEventListener('click', event => {
         }
     })
 
-    let msgSection = document.getElementById('ordered-list');
-    let p = document.createElement('li');
+    let msgSection = document.getElementById('table-data');
+    let p = document.createElement('td');
     p.innerHTML = data['username'];
     msgSection.appendChild(p);
     event.preventDefault(true);
@@ -107,7 +107,12 @@ async function demo() {
             }
 
         })
-        data = getData();
+        refreshQueue();
+    }
+}
+
+function refreshQueue() {
+    data = getData();
         fetch('../../backend/queue/refresh_queue.php', {
             method: 'POST',
             headers: {
@@ -116,16 +121,39 @@ async function demo() {
             body: JSON.stringify(data)
         }).then(res => res.json())
         .then(msg => {
-            var s = document.getElementById('ordered-list');
+            var s = document.getElementById('list');
             s.innerHTML = '';
             for(var i of msg) {
-                var p = document.createElement('li');
-                p.textContent = i['username'];
-                s.appendChild(p);
+                createThing(i['username'],s);
             }
 
         })
-    }
 }
 
+  function createThing(username, parent){
+    const li = document.createElement('li');
+    const sec1 = document.createElement('section');
+    const p = document.createElement('p');
+    p.innerHTML = username;
+    sec1.setAttribute('class','user');
+    sec1.appendChild(p);
+    
+    const sec2 = document.createElement('section');
+    sec2.className = 'buttonsec';
+    const btn1 = document.createElement('button');
+    btn1.innerHTML = "Добави";
+    btn1.className = 'add-button add';
+
+    const btn2 = document.createElement('button');
+    btn2.innerHTML = "Добави временно";
+    btn2.className = 'tempAdd-button tempAdd';
+
+    sec2.appendChild(btn1);
+    sec2.appendChild(btn2);
+    li.appendChild(sec1);
+    li.appendChild(sec2);
+    parent.appendChild(li);
+  }
+  
+  
 demo();
